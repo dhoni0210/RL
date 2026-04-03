@@ -597,29 +597,41 @@
 
         // --- Form Submissions ---
         // --- Form Submissions ---
-        function handleBooking(e) {
-            e.preventDefault(); // Prevents the page from refreshing
+        async function handleNetlifyBooking(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitBtn.disabled = true;
 
-            // Get all the values from the form
-            const name = document.getElementById('b_name').value;
-            const phone = document.getElementById('b_phone').value;
-            const address = document.getElementById('b_address').value;
-            const service = document.getElementById('b_service').value;
-            const time = document.getElementById('b_time').value;
+            const formData = new FormData(form);
 
-            // Format the message for WhatsApp
-            const message = `*New Pickup Booking!* %0A%0A*Name:* ${name} %0A*Phone:* ${phone} %0A*Address:* ${address} %0A*Service:* ${service} %0A*Pickup Time:* ${time}`;
+            try {
+                const response = await fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString()
+                });
 
-            // Your business WhatsApp number (include country code 91, no plus sign)
-            const whatsappNumber = "918688084535"; 
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
-
-            // Open WhatsApp with the pre-filled message
-            window.open(whatsappURL, '_blank');
-
-            // Reset the form and go back to home
-            document.getElementById('bookingForm').reset();
-            navigate('home');
+                if (response.ok) {
+                    submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Booking Confirmed!';
+                    submitBtn.style.backgroundColor = "#25D366";
+                    
+                    setTimeout(() => {
+                        form.reset();
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.style.backgroundColor = "";
+                        submitBtn.disabled = false;
+                        alert("Your booking has been received! We will call you shortly.");
+                    }, 2000);
+                }
+            } catch (error) {
+                alert("Something went wrong. Please try again.");
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
         }
 
         function handleContact(e) {
