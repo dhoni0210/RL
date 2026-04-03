@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reena's Laundry | Premium Laundry & Dry Cleaning Near You</title>
+    <meta name="description" content="Affordable & reliable laundry service. We offer clothes washing, dry cleaning, and steam ironing with free pickup and delivery. Book your slot today!">
+    <meta name="keywords" content="Laundry service near me, dry cleaning service, laundry pickup and delivery, steam ironing, clothes washing, local laundry">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary: #0056b3;
+            --secondary: #eef5ff;
+            --accent: #ff6b6b;
+            --whatsapp: #25D366;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --bg-gray: #f8f9fa;
+            --radius: 8px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* --- GLOBAL RESET & TYPOGRAPHY --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { color: var(--text-dark); background-color: var(--white); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        /* --- UTILITIES --- */
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .section { padding: 60px 0; }
+        .text-center { text-align: center; }
+        .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 10px; }
+        .section-subtitle { color: var(--text-light); margin-bottom: 40px; font-size: 1.1rem; }
+        
+        /* --- BUTTONS --- */
+        .btn { display: inline-block; padding: 12px 28px; border-radius: var(--radius); font-weight: 600; cursor: pointer; border: none; transition: 0.3s; font-size: 1rem; }
+        .btn-primary { background: var(--primary); color: var(--white); box-shadow: 0 4px 10px rgba(0, 86, 179, 0.3); }
+        .btn-primary:hover { background: #004494; transform: translateY(-2px); }
+        .btn-whatsapp { background: var(--whatsapp); color: var(--white); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+        .btn-whatsapp:hover { background: #1ebd5a; transform: translateY(-2px); }
+
+        /* --- TOP BANNER (URGENCY) --- */
+        .top-banner { background: var(--accent); color: var(--white); text-align: center; padding: 8px; font-size: 0.9rem; font-weight: 600; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); cursor: pointer; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links li { cursor: pointer; font-weight: 600; color: var(--text-light); transition: 0.2s; }
+        .nav-links li:hover, .nav-links li.active { color: var(--primary); }
+        .mobile-menu-btn { display: none; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+        /* --- PAGE SYSTEM (SPA) --- */
+        .page { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- HERO SECTION --- */
+        .hero { background: linear-gradient(rgba(238, 245, 255, 0.9), rgba(238, 245, 255, 0.9)), url('https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80') center/cover; padding: 80px 0; text-align: center; }
+        .hero h1 { font-size: 3rem; color: var(--primary); margin-bottom: 15px; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; color: var(--text-dark); max-width: 600px; margin-inline: auto; }
+        .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        /* --- TRUST BADGES --- */
+        .trust-badges { display: flex; justify-content: space-around; flex-wrap: wrap; background: var(--white); padding: 30px 0; box-shadow: var(--shadow); margin-top: -30px; position: relative; border-radius: var(--radius); width: 90%; max-width: 1000px; margin-inline: auto; z-index: 10; }
+        .badge { text-align: center; width: 30%; min-width: 120px; margin-bottom: 15px; }
+        .badge i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .badge p { font-weight: 600; font-size: 0.9rem; }
+
+        /* --- HOW IT WORKS --- */
+        .steps { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .step { text-align: center; flex: 1; min-width: 250px; padding: 20px; }
+        .step-icon { width: 80px; height: 80px; background: var(--secondary); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 15px; }
+
+        /* --- SERVICES CARDS --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .card { background: var(--white); border: 1px solid #eee; border-radius: var(--radius); padding: 30px 20px; text-align: center; transition: 0.3s; box-shadow: var(--shadow); }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+        .card h3 { margin-bottom: 10px; }
+        .card p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 20px; }
+
+        /* --- PRICING TABLE --- */
+        .pricing-table { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; max-width: 800px; margin: 0 auto; }
+        .pricing-row { display: flex; justify-content: space-between; padding: 20px 30px; border-bottom: 1px solid #eee; align-items: center; }
+        .pricing-row:last-child { border-bottom: none; }
+        .pricing-row:nth-child(even) { background: var(--bg-gray); }
+        .price-val { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .best-value { background: var(--accent); color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; margin-left: 10px; }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials { background: var(--secondary); }
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .review { background: var(--white); padding: 25px; border-radius: var(--radius); box-shadow: var(--shadow); }
+        .stars { color: #ffc107; margin-bottom: 10px; }
+        .review-author { font-weight: 600; margin-top: 15px; color: var(--primary); }
+
+        /* --- FORMS (BOOKING & CONTACT) --- */
+        .form-container { max-width: 600px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 5px solid var(--primary); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95rem; }
+        .form-control { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
+        .form-control:focus { outline: none; border-color: var(--primary); }
+        textarea.form-control { resize: vertical; height: 100px; }
+        .btn-block { width: 100%; }
+
+        /* --- ABOUT & CONTACT --- */
+        .about-content { max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1rem; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start; }
+        .contact-info-box { background: var(--secondary); padding: 30px; border-radius: var(--radius); }
+        .contact-info-box p { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .contact-info-box i { color: var(--primary); font-size: 1.2rem; }
+
+        /* --- FLOATING WHATSAPP & EXIT INTENT --- */
+        .floating-wa { position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 9999; transition: 0.3s; }
+        .floating-wa:hover { transform: scale(1.1); }
+        
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; justify-content: center; align-items: center; }
+        .modal { background: white; padding: 40px; border-radius: var(--radius); max-width: 450px; text-align: center; position: relative; }
+        .close-modal { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--text-dark); color: white; padding: 40px 0 20px; text-align: center; }
+        .footer-links { margin: 20px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .footer-links span { cursor: pointer; color: #aaa; transition: 0.3s; }
+        .footer-links span:hover { color: white; }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: white; box-shadow: var(--shadow); padding: 20px 0; }
+            .nav-links.show { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .nav-container { flex-wrap: wrap; }
+            .hero h1 { font-size: 2.2rem; }
+            .trust-badges { width: 100%; margin-top: 0; box-shadow: none; border-bottom: 1px solid #eee; border-radius: 0; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hide-mobile { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Urgency Banner -->
+    <div class="top-banner">
+        ⚡ Need it fast? Book before 12 PM for Same-Day Pickup!
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo" onclick="navigate('home')">Reena's <span>Laundry</span></div>
+            <i class="fas fa-bars mobile-menu-btn" onclick="toggleMenu()"></i>
+            <ul class="nav-links" id="navMenu">
+                <li onclick="navigate('home')" class="active" data-target="home">Home</li>
+                <li onclick="navigate('services')" data-target="services">Services</li>
+                <li onclick="navigate('pricing')" data-target="pricing">Pricing</li>
+                <li onclick="navigate('about')" data-target="about">About</li>
+                <li onclick="navigate('contact')" data-target="contact">Contact</li>
+                <li><button class="btn btn-primary" onclick="navigate('booking')">Book Pickup</button></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA (SPA) -->
+    <main>
+
+        <!-- ================= HOME PAGE ================= -->
+        <div id="home" class="page active">
+            <!-- Hero -->
+            <section class="hero">
+                <div class="container">
+                    <h1>Fresh Clothes.<br>Zero Hassle.</h1>
+                    <p>Premium washing, dry cleaning, and steam ironing delivered to your doorstep. Affordable, reliable, and perfectly folded.</p>
+                    <div class="hero-btns">
+                        <button class="btn btn-primary" onclick="navigate('booking')"><i class="fas fa-truck"></i> Schedule Pickup</button>
+                        <a href="https://wa.me/918688084535" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+                <div class="badge">
+                    <i class="fas fa-tags"></i>
+                    <p>Affordable Prices</p>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-bolt"></i>
+                    <p>Fast Turnaround</p>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-medal"></i>
+                    <p>Premium Care</p>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <section class="section">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">How It Works</h2>
+                        <p class="section-subtitle">Clean clothes in 3 simple steps</p>
+                    </div>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-icon"><i class="far fa-calendar-check"></i></div>
+                            <h3>1. Book Pickup</h3>
+                            <p>Schedule a time online or via WhatsApp.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon"><i class="fas fa-tshirt"></i></div>
+                            <h3>2. We Clean</h3>
+                            <p>Expert washing, ironing, or dry cleaning.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon"><i class="fas fa-box"></i></div>
+                            <h3>3. Delivered Fresh</h3>
+                            <p>Delivered back to you crisp and ready to wear.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Snippet -->
+            <section class="section" style="background: var(--bg-gray);">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">Our Services</h2>
+                        <p class="section-subtitle">Professional care for all your fabrics</p>
+                    </div>
+                    <div class="services-grid">
+                        <div class="card">
+                            <i class="fas fa-wind"></i>
+                            <h3>Steam Ironing</h3>
+                            <p>Crisp, wrinkle-free clothes perfect for office wear.</p>
+                            <button class="btn btn-primary" style="padding: 8px 15px; font-size:0.9rem;" onclick="navigate('pricing')">View Pricing</button>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-water"></i>
+                            <h3>Wash & Fold</h3>
+                            <p>Daily wear cleaned, dried, and neatly folded.</p>
+                            <button class="btn btn-primary" style="padding: 8px 15px; font-size:0.9rem;" onclick="navigate('pricing')">View Pricing</button>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-user-tie"></i>
+                            <h3>Dry Cleaning</h3>
+                            <p>Specialized care for suits, sarees, and delicates.</p>
+                            <button class="btn btn-primary" style="padding: 8px 15px; font-size:0.9rem;" onclick="navigate('pricing')">View Pricing</button>
+                        </div>
+                    </div>
+                    <div class="text-center" style="margin-top: 40px;">
+                        <button class="btn btn-primary" onclick="navigate('services')">View All Services Details</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="section testimonials">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">Loved by Locals</h2>
+                        <p class="section-subtitle">Hear what our happy customers have to say</p>
+                    </div>
+                    <div class="review-grid">
+                        <div class="review">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p>"Reena's Laundry is a lifesaver! I schedule a pickup every weekend. The steam ironing is flawless and the clothes smell amazing."</p>
+                            <div class="review-author">- Priya S., IT Professional</div>
+                        </div>
+                        <div class="review">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p>"Best dry cleaning service for my silk sarees. Affordable, transparent pricing, and they actually delivered on time!"</p>
+                            <div class="review-author">- Anita M., Homemaker</div>
+                        </div>
+                        <div class="review">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                            <p>"As a student, the Wash & Fold by KG is super economical. Booking via WhatsApp makes it so easy."</p>
+                            <div class="review-author">- Rahul K., Student</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= SERVICES PAGE ================= -->
+        <div id="services" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">Comprehensive Laundry Services</h2>
+                        <p class="section-subtitle">We handle the dirty work so you don't have to.</p>
+                    </div>
+                    <div class="services-grid" style="max-width: 900px; margin: 0 auto;">
+                        
+                        <div class="card" style="text-align: left;">
+                            <i class="fas fa-wind" style="float: right; font-size: 2.5rem;"></i>
+                            <h3>Steam Ironing</h3>
+                            <p>Using industrial-grade steam irons to remove deep wrinkles without burning fabrics. Perfect for cotton shirts, trousers, and ethnic wear.</p>
+                            <ul>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> Safe on delicate fabrics</li>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> Razor-sharp creases</li>
+                            </ul>
+                        </div>
+
+                        <div class="card" style="text-align: left;">
+                            <i class="fas fa-water" style="float: right; font-size: 2.5rem;"></i>
+                            <h3>Clothes Washing</h3>
+                            <p>Premium detergents and fabric softeners used. Colors are separated. Ideal for daily wear, bedsheets, and towels.</p>
+                            <ul>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> Anti-bacterial wash available</li>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> Billed conveniently by KG</li>
+                            </ul>
+                        </div>
+
+                        <div class="card" style="text-align: left;">
+                            <i class="fas fa-user-tie" style="float: right; font-size: 2.5rem;"></i>
+                            <h3>Dry Cleaning</h3>
+                            <p>Gentle solvent cleaning for fabrics that cannot withstand water. Essential for suits, lehengas, silk sarees, and winter coats.</p>
+                            <ul>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> Protects fabric texture</li>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> Prevents color bleeding</li>
+                            </ul>
+                        </div>
+
+                        <div class="card" style="text-align: left;">
+                            <i class="fas fa-magic" style="float: right; font-size: 2.5rem;"></i>
+                            <h3>Stain Removal</h3>
+                            <p>Targeted pre-treatment for tough stains like oil, ink, tea, and wine before the main wash cycle.</p>
+                            <ul>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> Chemical-safe spot treatment</li>
+                                <li><i class="fas fa-check" style="font-size:1rem; color:var(--whatsapp); margin-bottom:5px;"></i> High success rate</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="text-center" style="margin-top: 50px;">
+                        <button class="btn btn-primary btn-block" style="max-width:300px;" onclick="navigate('booking')">Book a Service Now</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= PRICING PAGE ================= -->
+        <div id="pricing" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">Simple, Transparent Pricing</h2>
+                        <p class="section-subtitle">No hidden fees. Free pickup & delivery on orders over ₹300.</p>
+                    </div>
+                    
+                    <div class="pricing-table">
+                        <div class="pricing-row">
+                            <div>
+                                <strong>Steam Ironing</strong>
+                                <div style="font-size:0.85rem; color:var(--text-light);">Shirts, Trousers</div>
+                            </div>
+                            <div class="price-val">Starts at ₹15 <span style="font-size:0.9rem; font-weight:normal; color:var(--text-light);">/ piece</span></div>
+                        </div>
+                        <div class="pricing-row">
+                            <div>
+                                <strong>Wash & Fold <span class="best-value">Most Popular</span></strong>
+                                <div style="font-size:0.85rem; color:var(--text-light);">Daily wear, T-shirts, Jeans</div>
+                            </div>
+                            <div class="price-val">Starts at ₹80 <span style="font-size:0.9rem; font-weight:normal; color:var(--text-light);">/ kg</span></div>
+                        </div>
+                        <div class="pricing-row">
+                            <div>
+                                <strong>Wash & Iron</strong>
+                                <div style="font-size:0.85rem; color:var(--text-light);">Washed, dried, and perfectly pressed</div>
+                            </div>
+                            <div class="price-val">Starts at ₹140 <span style="font-size:0.9rem; font-weight:normal; color:var(--text-light);">/ kg</span></div>
+                        </div>
+                        <div class="pricing-row">
+                            <div>
+                                <strong>Dry Cleaning</strong>
+                                <div style="font-size:0.85rem; color:var(--text-light);">Shirts,Suits, Heavy Sarees</div>
+                            </div>
+                            <div class="price-val">Starts at ₹70,150,200</div>
+                        </div>
+                        <div class="pricing-row">
+                            <div>
+                                <strong>Blankets / Duvets</strong>
+                                <div style="font-size:0.85rem; color:var(--text-light);">Deep cleaning for heavy bedding</div>
+                            </div>
+                            <div class="price-val">₹250 <span style="font-size:0.9rem; font-weight:normal; color:var(--text-light);">/ piece</span></div>
+                        </div>
+                    </div>
+
+                    <div class="text-center" style="margin-top: 40px;">
+                        <button class="btn btn-primary" onclick="navigate('booking')">Schedule Pickup Now</button>
+                        <p style="margin-top:15px; font-size:0.9rem; color:var(--text-light);">Or send us a photo on <a href="https://wa.me/918688084535" style="color:var(--whatsapp); font-weight:bold;">WhatsApp</a> for a custom quote.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= ABOUT PAGE ================= -->
+        <div id="about" class="page">
+            <section class="section">
+                <div class="container about-content">
+                    <h2 class="section-title">The Story of Reena's Laundry</h2>
+                    <br>
+                    <img src="https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&q=80&w=800" alt="Laundry Service" style="width:100%; max-width:600px; border-radius:var(--radius); margin-bottom:30px; box-shadow:var(--shadow);">
+                    <p>Started in 2025, Reena's Laundry began with a simple mission: to give families and busy professionals their weekends back. We realized how much time people spent washing, drying, and ironing clothes—time that could be spent with loved ones or resting.</p>
+                    <br>
+                    <p>What started as a small neighborhood shop has grown into a trusted local business. We treat every garment as if it were our own, using eco-friendly detergents, state-of-the-art steam presses, and a rigorous quality check process.</p>
+                    <br>
+                    <p><strong>Our Promise:</strong> Reliability, Affordability, and Care. When you hand over your laundry to us, you are guaranteed fresh, clean clothes delivered on time, every time.</p>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= CONTACT PAGE ================= -->
+        <div id="contact" class="page">
+            <section class="section">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">Get in Touch</h2>
+                        <p class="section-subtitle">We're here to help with all your laundry needs.</p>
+                    </div>
+                    
+                    <div class="contact-grid">
+                        <!-- Contact Info -->
+                        <div class="contact-info-box">
+                            <h3>Contact Information</h3>
+                            <p style="margin-top:20px;"><i class="fas fa-phone-alt"></i> +91 86880 84535</p>
+                            <p><i class="fab fa-whatsapp" style="color:var(--whatsapp);"></i> +91 86880 84535</p>
+                            <p><i class="fas fa-envelope"></i> reenaslaundry.work@gmail.com</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Shop No. 12, Main Market Road, City Center, India 110001</p>
+                            
+                            <h4 style="margin-top:30px; margin-bottom:10px;">Operating Hours</h4>
+                            <p style="font-weight:normal; font-size:0.95rem;">Monday - Saturday: 8:00 AM - 9:00 PM<br>Sunday: 9:00 AM - 2:00 PM</p>
+                        </div>
+
+                        <!-- General Contact Form -->
+                        <div class="form-container" style="box-shadow:none; padding:0; border:none; background:transparent;">
+                            <form onsubmit="handleContact(event)">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" class="form-control" required placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" class="form-control" required placeholder="10-digit mobile number">
+                                </div>
+                                <div class="form-group">
+                                    <label>Message</label>
+                                    <textarea class="form-control" required placeholder="How can we help you?"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= BOOK PICKUP PAGE (HIGH CONVERSION) ================= -->
+        <div id="booking" class="page">
+            <section class="section" style="background: var(--secondary);">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">Schedule a Free Pickup</h2>
+                        <p class="section-subtitle">Fill out the form below and we'll confirm your slot in 5 minutes.</p>
+                    </div>
+
+                    <div class="form-container">
+                        <form id="bookingForm" onsubmit="handleBooking(event)">
+                            <div class="form-group">
+                                <label>Your Name *</label>
+                                <input type="text" id="b_name" class="form-control" required placeholder="Enter your full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>WhatsApp / Mobile Number *</label>
+                                <input type="tel" id="b_phone" class="form-control" required placeholder="10-digit number" pattern="[0-9]{10}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Pickup Address & Locality *</label>
+                                <textarea id="b_address" class="form-control" required placeholder="House No, Building, Street, Pincode"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Service Type *</label>
+                                <select id="b_service" class="form-control" required>
+                                    <option value="" disabled selected>Select a service</option>
+                                    <option value="Wash & Fold">Wash & Fold (Per KG)</option>
+                                    <option value="Steam Ironing">Steam Ironing</option>
+                                    <option value="Dry Cleaning">Dry Cleaning</option>
+                                    <option value="Multiple">Multiple Services</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Preferred Pickup Date & Time *</label>
+                                <input type="datetime-local" id="b_time" class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" style="font-size:1.1rem; padding:15px;">Confirm Pickup</button>
+                        </form>
+                        
+                        <div class="text-center" style="margin-top:20px;">
+                            <p style="color:var(--text-light); margin-bottom:10px;">Prefer to book via WhatsApp?</p>
+                            <a href="https://wa.me/918688084535?text=Hi,%20I%20want%20to%20schedule%20a%20laundry%20pickup." target="_blank" class="btn btn-whatsapp btn-block"><i class="fab fa-whatsapp"></i> Book via WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3 style="margin-bottom: 10px;">Reena's Laundry</h3>
+            <p>Premium care for your garments. Serving the community since 2025.</p>
+            <div class="footer-links">
+                <span onclick="navigate('home')">Home</span>
+                <span onclick="navigate('services')">Services</span>
+                <span onclick="navigate('pricing')">Pricing</span>
+                <span onclick="navigate('contact')">Contact</span>
+            </div>
+            <p style="font-size:0.8rem; color:#777;">&copy; 2023 Reena's Laundry. All Rights Reserved. (Demo Strategy by Expert UX Designer)</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918688084535?text=Hi,%20I%20have%20an%20inquiry%20about%20Reena's%20Laundry." target="_blank" class="floating-wa" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Exit Intent Modal (Conversion Booster) -->
+    <div class="modal-overlay" id="exitModal">
+        <div class="modal">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="color:var(--primary); margin-bottom:10px;">Wait! Don't leave yet.</h2>
+            <p style="margin-bottom:20px;">Get <strong>10% OFF</strong> your first laundry order when you book today!</p>
+            <button class="btn btn-primary btn-block" onclick="claimDiscount()">Claim 10% OFF & Book Now</button>
+            <p style="margin-top:15px; font-size:0.8rem; cursor:pointer; color:var(--text-light);" onclick="closeModal()">No thanks, I'll pay full price.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for SPA navigation and interactivity -->
+    <script>
+        // --- Single Page Application (SPA) Navigation Logic ---
+        function navigate(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show target page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update Navigation active state
+            const navItems = document.querySelectorAll('.nav-links li');
+            navItems.forEach(item => {
+                if(item.dataset.target) {
+                    item.classList.remove('active');
+                    if(item.dataset.target === pageId) {
+                        item.classList.add('active');
+                    }
+                }
+            });
+
+            // Close mobile menu if open
+            const navMenu = document.getElementById('navMenu');
+            if(navMenu.classList.contains('show')) {
+                navMenu.classList.remove('show');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Mobile Menu Toggle ---
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
+        }
+
+        // --- Form Submissions ---
+        function handleBooking(e) {
+            e.preventDefault();
+            // In a real app, this would send an API request or POST to a backend.
+            alert("✅ Booking Confirmed! We have received your request and will contact you via WhatsApp/Phone shortly to confirm the exact pickup time.");
+            document.getElementById('bookingForm').reset();
+            navigate('home');
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            alert("✅ Message Sent! We will get back to you within 2 hours.");
+            e.target.reset();
+        }
+
+        // --- Exit Intent Logic (Desktop Only) ---
+        let exitModalTriggered = false;
+        
+        document.addEventListener('mouseleave', function(e) {
+            if(e.clientY < 0 && !exitModalTriggered) {
+                document.getElementById('exitModal').style.display = 'flex';
+                exitModalTriggered = true;
+            }
+        });
+
+        function closeModal() {
+            document.getElementById('exitModal').style.display = 'none';
+        }
+
+        function claimDiscount() {
+            closeModal();
+            navigate('booking');
+            // Optional: Auto-fill a promo code field if it existed.
+            alert("Promo code 'WELCOME10' activated! Fill out the form to book.");
+        }
+        
+        // Ensure Date/Time picker in booking form cannot select past dates
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeInput = document.getElementById('b_time');
+            if(timeInput) {
+                const now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                timeInput.min = now.toISOString().slice(0,16);
+            }
+        });
+    </script>
+
+</body>
+</html>
