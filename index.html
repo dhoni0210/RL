@@ -481,7 +481,7 @@
                     </div>
 
                     <div class="form-container">
-                        <form id="bookingForm" onsubmit="handleBooking(event)">
+                        <form id="bookingForm" name="Laundry_Booking" data-netlify="true" onsubmit="handleNetlifyBooking(event)">
                             <div class="form-group">
                                 <label>Your Name *</label>
                                 <input type="text" id="b_name" class="form-control" required placeholder="Enter your full name">
@@ -625,6 +625,7 @@
                         submitBtn.style.backgroundColor = "";
                         submitBtn.disabled = false;
                         alert("Your booking has been received! We will call you shortly.");
+                        navigate('home');
                     }, 2000);
                 }
             } catch (error) {
